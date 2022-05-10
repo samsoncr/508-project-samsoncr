@@ -14,6 +14,27 @@ if ($_SERVER['REQUEST_METHOD'] != 'POST') {
     echo "</tbody>";
     echo "</table>";
     echo "</form>";
+
+if (!isset($_GET['champion_name']) && $_SERVER['REQUEST_METHOD'] != 'POST') {
+    
+    // Retrieve list of employees
+    $stmt = $conn->prepare("SELECT champion_name FROM champions ORDER BY champion_name");
+    $stmt->execute();
+    
+    echo "<form method='get'>";
+    echo "<select name='champion_name' onchange='this.form.submit();'>";
+    echo "<option value='0' selected disabled>Select a champion</option>";
+    
+    $result = $stmt->get_result();
+    while ($row = $result->fetch_assoc()) {
+        echo "<option value='$row[champion_name]'>$row[champion_name]</option>";
+    }
+    
+    echo "</select>";
+    echo "</form>";
+    exit();
+}
+
 } else {
     
     // try {

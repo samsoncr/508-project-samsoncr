@@ -16,7 +16,7 @@ while($row = $result->fetch_assoc()) {
     <ul>
     	<li><a href="add-champion.php">add a champion</a></li>
     	<li><a href="edit-champion.php">edit a champion</a></li>
-        <li><a href="delete-champion.php">delete a champion</a></li>  
+        <li><a href="delete-champion.php">delete a champion</a></li>
     </ul>
 </div>
 
