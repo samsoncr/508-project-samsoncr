@@ -28,6 +28,7 @@ if (!isset($_GET['champion_name']) && $_SERVER['REQUEST_METHOD'] != 'POST') {
 if ($_SERVER['REQUEST_METHOD'] != 'POST') {
     
     $champion_name = $_GET["champion_name"];
+    $price = $_GET["price"];
 
     echo $champion_name;
     
@@ -87,6 +88,7 @@ if ($_SERVER['REQUEST_METHOD'] != 'POST') {
     // $_SESSION["editEmployee_employee_id"] = $employee_id;
 
     $_SESSION["editChampion_name"] = $champion_name;
+
     echo "set it to " . $_SESSION["editChampion_name"] . " also " . $champion_name;
     
 }
@@ -95,9 +97,22 @@ else {
     
     // try {
     // $stmt = $conn->prepare("SELECT * FROM champions WHERE champion_name = ?;");
-    $stmt = $conn->prepare("UPDATE champions SET champion_name = ? WHERE champion_name = ?;");
+    $stmt = $conn->prepare("UPDATE champions SET champion_name = ?, ability_haste = ?, ability_power = ?, armor = ?, attack_damage = ?, attack_range = ?, attack_speed = ?, magic_resist = ?, movement_speed = ?, price = ? WHERE champion_name = ?;");
 
-    $stmt->bind_param('ss', $_POST['champion_name'], $_SESSION["editChampion_name"]);
+    $stmt->bind_param(
+        'siiiiidiids',
+        $_POST['champion_name'],
+        $_POST["ability_haste"],
+        $_POST["ability_power"],
+        $_POST["armor"],
+        $_POST["attack_damage"],
+        $_POST["attack_range"],
+        $_POST["attack_speed"],
+        $_POST["magic_resist"],
+        $_POST["movement_speed"],
+        $_POST["price"],
+        $_SESSION["editChampion_name"]
+    );
 
     echo "changed champion name from " . $_SESSION["editChampion_name"] . " to " . $_POST['champion_name'];
 
