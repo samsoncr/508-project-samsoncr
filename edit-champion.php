@@ -1,7 +1,8 @@
 <html>
 <body>
-
+<div class="page">
 <?php
+require_once('header.php');
 
 require_once('connection.php');
 
@@ -14,7 +15,7 @@ if (!isset($_GET['champion_name']) && $_SERVER['REQUEST_METHOD'] != 'POST') {
     $stmt->execute();
     
     echo "<form method='get'>";
-    echo "<select name='champion_name' onchange='this.form.submit();'>";
+    echo "<select style='font-size: 18px' name='champion_name' onchange='this.form.submit();'>";
     echo "<option value='0' selected disabled>Select a champion</option>";
     
     $result = $stmt->get_result();
@@ -141,5 +142,6 @@ else {
     </ul>
 </div>
 
+</div>
 </body>
 </html>

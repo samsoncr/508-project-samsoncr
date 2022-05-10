@@ -1,7 +1,9 @@
 <html>
 <body>
 
+<div class="page">
 <?php 
+require_once('header.php');
 
 require_once('connection.php');
 
@@ -25,7 +27,7 @@ if (!isset($_GET['champion_name']) && $_SERVER['REQUEST_METHOD'] != 'POST') {
     $stmt->execute();
     
     echo "<form method='post'>";
-    echo "<select name='champion_name'>";
+    echo "<select style='font-size: 18px; margin-right: 10px' name='champion_name'>";
     echo "<option value='0' selected disabled>Select a champion</option>";
     
     $result = $stmt->get_result();
@@ -60,7 +62,7 @@ else {
 
 ?>
 
-<div class="container-fluid mt-3 mb-3">
+<div>
     <ul>
     	<li><a href="add-champion.php">add a champion</a></li>
     	<li><a href="edit-champion.php">edit a champion</a></li>
@@ -69,5 +71,6 @@ else {
     </ul>
 </div>
 
+</div>
 </body>
 </html>

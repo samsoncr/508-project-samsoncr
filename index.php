@@ -1,8 +1,13 @@
 
 <html>
+<head>
+    
+</head>
 <body>
+<div class="page">
 
 <?php
+require_once('header.php');
 
 require_once('connection.php');
 
@@ -11,8 +16,9 @@ $result = $conn->query($sql);
 // while($row = $result->fetch_assoc()) {
 //     echo $row["champion_name"] . " " . $row["armor"] . "<br>";
 // }
+echo "<h2>All Champions</h2>";
 
-echo "<table border='1'>
+echo "<table align='center' border='1'>
 <tr>
 <th>Name</th>
 <th>Armor</th>
@@ -44,15 +50,10 @@ echo "</table>";
 
 ?>
 
+<br>
+<br>
 
-<div class="container-fluid mt-3 mb-3">
-    <ul>
-    	<li><a href="add-champion.php">add a champion</a></li>
-    	<li><a href="edit-champion.php">edit a champion</a></li>
-        <li><a href="delete-champion.php">delete a champion</a></li>
-        <li><a href="view-champion.php">view a champion</a></li>
-    </ul>
+
 </div>
-
 </body>
 </html>
