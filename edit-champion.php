@@ -2,6 +2,8 @@
 
 require_once('connection.php');
 
+session_start();
+
 if (!isset($_GET['champion_name']) && $_SERVER['REQUEST_METHOD'] != 'POST') {
     
     // Retrieve list of employees
@@ -82,16 +84,22 @@ if ($_SERVER['REQUEST_METHOD'] != 'POST') {
     // echo "</table>";
     // echo "</form>";
     
-    // $_SESSION["editEmployee_employee_id"] = $employee_id;    
+    // $_SESSION["editEmployee_employee_id"] = $employee_id;
+
+    $_SESSION["editChampion_name"] = $champion_name;
+    echo "set it to " . $_SESSION["editChampion_name"] . " also " . $champion_name;
     
 }
 
 else {
     
     // try {
-    $stmt = $conn->prepare("SELECT FROM champions WHERE champion_name = ?;");
+    // $stmt = $conn->prepare("SELECT * FROM champions WHERE champion_name = ?;");
+    $stmt = $conn->prepare("UPDATE champions SET champion_name = ? WHERE champion_name = ?;");
 
-    $stmt->bind_param('s', $_POST['champion_name']);
+    $stmt->bind_param('ss', $_POST['champion_name'], $_SESSION["editChampion_name"]);
+
+    echo "changed champion name from " . $_SESSION["editChampion_name"] . " to " . $_POST['champion_name'];
 
         
     $stmt->execute();
@@ -99,6 +107,7 @@ else {
     //     echo "Error: " . $e->getMessage();
     //     die();
     // }
+    unset ($_SESSION["editChampion_name"]);
 
     echo "Success";    
 }
