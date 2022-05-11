@@ -77,6 +77,37 @@ if ($_SERVER['REQUEST_METHOD'] != 'POST') {
     echo "</form>";
 } else {
     
+    if (!array_key_exists('champion_name', $_POST)) {
+        die('error!!!!! You did not give a champion name');
+    }
+    if (!array_key_exists('ability_haste', $_POST)) {
+        die('error!!!!! You did not specify the ability haste');
+    }
+    if (!array_key_exists('ability_power', $_POST)) {
+        die('error!!!!! You did not specify the ability power value');
+    }
+    if (!array_key_exists('armor', $_POST)) {
+        die('error!!!!! You did not specify the armor value');
+    }
+    if (!array_key_exists('attack_damage', $_POST)) {
+        die('error!!!!! You did not specify the attack damage value');
+    }
+    if (!array_key_exists('attack_range', $_POST)) {
+        die('error!!!!! You did not specify the attack range value');
+    }
+    if (!array_key_exists('attack_speed', $_POST)) {
+        die('error!!!!! You did not specify the attack speed value');
+    }
+    if (!array_key_exists('magic_resist', $_POST)) {
+        die('error!!!!! You did not specify the magic resist value');
+    }
+    if (!array_key_exists('movement_speed', $_POST)) {
+        die('error!!!!! You did not specify the movement speed value');
+    }
+    if (!array_key_exists('price', $_POST)) {
+        die('error!!!!! You did not specify the price');
+    }
+
     // try {
     $stmt = $conn->prepare("INSERT INTO champions (ability_haste, ability_power, armor, attack_damage, attack_range, attack_speed, champion_name, magic_resist, movement_speed, price) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);");
 
